@@ -1,4 +1,4 @@
-const notes = ['A','A#','B','C','C#','D','D#','E','F','F#','G','G#']
+const notes = ['A','Bb/A#','B/Cb','C','C#/Db','D','Eb/D#','E','F','F#/Gb','G','G#/Ab']
 let usedNoteKeys = []
 
 function selectNote(key) {
@@ -19,16 +19,29 @@ function showRandomUnusedNote() {
 	let newNote = ''
 	if(12 == usedNoteKeys.length) {
 		usedNoteKeys = []
-	}
-	while(canGetNote) {
-		let randomNote = selectRandomUnusedNote()
-		console.log(randomNote)
-		if(null != randomNote) {
-			newNote = randomNote
-			canGetNote = false
+		document.getElementById('randomNote').textContent = ""
+		document.getElementById('generateNote').textContent = "Stop"
+	} else {
+		document.getElementById('generateNote').textContent = "Next"
+		while(canGetNote) {
+			let randomNote = selectRandomUnusedNote()
+			if(null != randomNote) {
+				newNote = randomNote
+				canGetNote = false
+			}
 		}
+		document.getElementById('randomNote').textContent = newNote
 	}
-	document.getElementById('randomNote').textContent = newNote
+	if(12 == usedNoteKeys.length) {
+		document.getElementById('generateNote').textContent = "Stop"
+	}
+	if(0 == usedNoteKeys.length) {
+		document.getElementById('generateNote').textContent = "Start"
+	}
+	setCount()
+}
+
+function setCount() {
 	document.getElementById('current').textContent = usedNoteKeys.length
 	document.getElementById('total').textContent = notes.length
 }
@@ -40,9 +53,12 @@ document.getElementById('generateNote').onclick = (e) => {
 }
 
 // capture button press to start/continue iteration
-document.onkeypress = (e) => {
+document.onkeyup = (e) => {
 	if('Space' == e.code) {
 		showRandomUnusedNote()
 	}
 }
 
+document.addEventListener("DOMContentLoaded", (event) => {
+	setCount()
+});
