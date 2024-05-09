@@ -1,6 +1,6 @@
-section#main {
+div#main {
 	width: 20rem;
-	margin:auto;
+	margin: auto;
 	margin-top: 5rem;
 	border-radius: 5px;
 	border: 2px solid #000;
