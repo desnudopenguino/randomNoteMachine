@@ -1,4 +1,4 @@
-const notes = ['A','Bb/A#','B/Cb','C','C#/Db','D','Eb/D#','E','F','F#/Gb','G','G#/Ab']
+const notes = ['A','B\u266D/A\u266F','B/C\u266D','C','C\u266F/D\u266D','D','E\u266D/D\u266F','E','F','F\u266F/G\u266D','G','G\u266F/A\u266D']
 let usedNoteKeys = []
 
 function selectNote(key) {
@@ -20,7 +20,6 @@ function showRandomUnusedNote() {
 	if(12 == usedNoteKeys.length) {
 		usedNoteKeys = []
 		document.getElementById('randomNote').textContent = ""
-		document.getElementById('generateNote').textContent = "Stop"
 	} else {
 		document.getElementById('generateNote').textContent = "Next"
 		while(canGetNote) {
@@ -33,7 +32,7 @@ function showRandomUnusedNote() {
 		document.getElementById('randomNote').textContent = newNote
 	}
 	if(12 == usedNoteKeys.length) {
-		document.getElementById('generateNote').textContent = "Stop"
+		document.getElementById('generateNote').textContent = "Done"
 	}
 	if(0 == usedNoteKeys.length) {
 		document.getElementById('generateNote').textContent = "Start"
