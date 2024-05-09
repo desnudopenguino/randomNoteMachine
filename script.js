@@ -6,10 +6,10 @@ function selectNote(key) {
 }
 
 function selectRandomUnusedNote() {
-	let randomKey = Math.floor(Math.random() * notes.length())
+	let randomKey = Math.floor(Math.random() * notes.length)
 	if(!usedNoteKeys.includes(randomKey)) {
 		usedNoteKeys.push(randomKey)
-		return selectNote()
+		return selectNote(randomKey)
 	}
 	return null
 }
@@ -22,12 +22,13 @@ function showRandomUnusedNote() {
 	}
 	while(canGetNote) {
 		let randomNote = selectRandomUnusedNote()
+		console.log(randomNote)
 		if(null != randomNote) {
 			newNote = randomNote
 			canGetNote = false
 		}
 	}
-	document.getElementById('generatedNote').textContent = newNote
+	document.getElementById('randomNote').textContent = newNote
 	document.getElementById('current').textContent = usedNoteKeys.length
 	document.getElementById('total').textContent = notes.length
 }
