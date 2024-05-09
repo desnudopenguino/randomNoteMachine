@@ -1,7 +1,27 @@
+body {
+	background: #FBFBFB;
+	color: #151515;
+}
 div#main {
-	width: 20rem;
 	margin: auto;
 	margin-top: 5rem;
 	border-radius: 5px;
 	border: 2px solid #000;
+	padding: 2rem;
+	text-align: center;
+	width: 15rem;
+}
+
+#randomNote {
+	font-size: 4rem;
+	height: 5rem;
+	font-weight: bold;
+}
+
+#progress {
+	margin: 0.5rem;
+}
+
+#generateNote {
+	padding: 0.5rem 1rem;
 }
