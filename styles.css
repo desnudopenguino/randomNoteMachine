@@ -11,14 +11,16 @@ html {
 	height: 100%;
 	width: 100%;
 }
+
 body {
 	margin: 0;
 	border: 0;
 	padding: 0;
 	box-sizing: border-box;
 	background: var(--white);
-	background-image: linear-gradient(to bottom left, var(--white), var(--white), var(--mintGreen), var(--white));
+	background-image: linear-gradient(to bottom left, var(--white), var(--white), var(--lightBlue));
 	color: #0D0221;
+	font-family: sans-serif;
 	font-weight: bold;
 }
 
@@ -39,7 +41,7 @@ div#main {
 }
 
 #progress {
-	margin: 0.5rem;
+	margin: 1rem;
 }
 
 #generateNote {
