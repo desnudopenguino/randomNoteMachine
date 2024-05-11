@@ -19,7 +19,7 @@ function showRandomUnusedNote() {
 	let newNote = ''
 	if(12 == usedNoteKeys.length) {
 		usedNoteKeys = []
-		document.getElementById('randomNote').textContent = ""
+		fadeText("")
 	} else {
 		document.getElementById('generateNote').textContent = "Next"
 		while(canGetNote) {
@@ -29,7 +29,7 @@ function showRandomUnusedNote() {
 				canGetNote = false
 			}
 		}
-		document.getElementById('randomNote').textContent = newNote
+		fadeText(newNote)
 	}
 	if(12 == usedNoteKeys.length) {
 		document.getElementById('generateNote').textContent = "Done"
@@ -40,13 +40,23 @@ function showRandomUnusedNote() {
 	setCount()
 }
 
+// fade out/in the random note text
+function fadeText(newText) {
+	let textElement = document.getElementById('randomNote')
+	textElement.classList.toggle('hidden')
+	setTimeout(() => {
+		textElement.textContent = newText
+		textElement.classList.toggle('hidden')
+	}, 200)
+}
+
+// set the count
 function setCount() {
 	document.getElementById('current').textContent = usedNoteKeys.length
 	document.getElementById('total').textContent = notes.length
 }
 
 // capture space to start/continue the iteration
-
 document.getElementById('generateNote').onclick = (e) => {
 	showRandomUnusedNote()
 }
@@ -58,6 +68,7 @@ document.onkeyup = (e) => {
 	}
 }
 
+// set initial count
 document.addEventListener("DOMContentLoaded", (event) => {
 	setCount()
 });
