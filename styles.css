@@ -33,6 +33,7 @@ div#main {
 	width: 15rem;
 	background: var(--white);
 	border: 4px solid var(--black);
+	transition: opacity 800ms ease-in-out;
 }
 
 #randomNote {
@@ -55,7 +56,7 @@ div#main {
 }
 
 .fade {
-	transition: opacity 200ms ease-in-out;
+	transition: opacity 100ms ease-in-out;
 }
 
 .hidden {
