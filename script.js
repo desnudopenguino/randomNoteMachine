@@ -71,4 +71,5 @@ document.onkeyup = (e) => {
 // set initial count
 document.addEventListener("DOMContentLoaded", (event) => {
 	setCount()
+	document.getElementById('main').classList.remove('hidden')
 });
