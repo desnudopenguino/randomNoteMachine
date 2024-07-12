@@ -1,4 +1,89 @@
+const notes = ['A', 'A\u266F/B\u266D', 'B', 'C', 'C\u266F/D\u266D', 'D', 'D\u266F/E\u266D', 'E', 'F', 'F\u266F/G\u266D', 'G', 'G\u266F/A\u266D']
+
+const majorKeys = [ 'A', 'B\u266D', 'B', 'C\u266D', 'C', 'C\u266F', 'D\u266D', 'D', 'E\u266D', 'E', 'F', 'F\u266F', 'G\u266D', 'G', 'A\u266D']
+
+const currentKey = majorKeys
+let usedNoteKeys = []
+
+function selectNote(key) {
+	return currentKey[key]
+}
+
+function selectRandomUnusedNote() {
+	let randomKey = Math.floor(Math.random() * currentKey.length)
+	if(!usedNoteKeys.includes(randomKey)) {
+		usedNoteKeys.push(randomKey)
+		return selectNote(randomKey)
+	}
+	return null
+}
+
+function showRandomUnusedNote() {
+	let canGetNote = true
+	let newNote = ''
+	if(12 == usedNoteKeys.length) {
+		usedNoteKeys = []
+		fadeText("")
+	} else {
+		document.getElementById('generateNote').textContent = "Next"
+		while(canGetNote) {
+			let randomNote = selectRandomUnusedNote()
+			if(null != randomNote) {
+				newNote = randomNote
+				canGetNote = false
+			}
+		}
+		fadeText(newNote)
+	}
+	if(12 == usedNoteKeys.length) {
+		document.getElementById('generateNote').textContent = "Done"
+	}
+	if(0 == usedNoteKeys.length) {
+		document.getElementById('generateNote').textContent = "Start"
+	}
+	setCount()
+}
+
+// fade out/in the random note text
+function fadeText(newText) {
+	let textElement = document.getElementById('randomNote')
+	textElement.textContent = newText
+}
+
+// set the count
+function setCount() {
+	document.getElementById('current').textContent = usedNoteKeys.length
+	document.getElementById('total').textContent = currentKey.length
+}
+
+const renderHome = () => {
+	if(document.getElementById('generateNote')) {
+		usedNoteKeys = []
+		setCount()
+		document.getElementById('generateNote').textContent = "Start"
+		document.getElementById('randomNote').textContent = ''
+		// capture space to start/continue the iteration
+		document.getElementById('generateNote').onclick = (e) => {
+			showRandomUnusedNote()
+		}
+		// capture button press to start/continue iteration
+		document.onkeyup = (e) => {
+			if('Space' == e.code) {
+				showRandomUnusedNote()
+			}
+		}
+	}
+	else {
+		document.onkeyup = null;
+	}
+}
+
 // set initial count
-document.addEventListener("DOMContentLoaded", (event) => {
-	document.getElementById('main').classList.remove('hidden')
+document.addEventListener("turbo:load", (event) => {
+	renderHome()
+	document.getElementById('main').classList.remove('hidden');
 });
+
+document.addEventListener("turbo:frame-render", (event) => {
+	renderHome()
+})
