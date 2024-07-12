@@ -66,11 +66,6 @@ div#main {
 	color: var(--federalBlue);
 }
 
-.turbo-progress-bar {
-	height: 10px;
-	background-color: green;
-}
-
 .about {
   text-align: left;
 }
