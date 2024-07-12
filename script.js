@@ -47,11 +47,7 @@ function showRandomUnusedNote() {
 // fade out/in the random note text
 function fadeText(newText) {
 	let textElement = document.getElementById('randomNote')
-	textElement.classList.toggle('hidden')
-	setTimeout(() => {
-		textElement.textContent = newText
-		textElement.classList.toggle('hidden')
-	}, 200)
+	textElement.textContent = newText
 }
 
 // set the count
@@ -60,11 +56,12 @@ function setCount() {
 	document.getElementById('total').textContent = currentKey.length
 }
 
-// set initial count
-document.addEventListener("turbo:load", (event) => {
+const renderHome = () => {
 	if(document.getElementById('generateNote')) {
 		usedNoteKeys = []
 		setCount()
+		document.getElementById('generateNote').textContent = "Start"
+		document.getElementById('randomNote').textContent = ''
 		// capture space to start/continue the iteration
 		document.getElementById('generateNote').onclick = (e) => {
 			showRandomUnusedNote()
@@ -76,18 +73,17 @@ document.addEventListener("turbo:load", (event) => {
 			}
 		}
 	}
-	document.getElementById('main').classList.remove('hidden')
+	else {
+		document.onkeyup = null;
+	}
+}
+
+// set initial count
+document.addEventListener("turbo:load", (event) => {
+	renderHome()
+	document.getElementById('main').classList.remove('hidden');
 });
 
-document.addEventListener("turbo:before-fetch-request", (event) => {
-	document.getElementById('main').classList.add('hidden')
-})
-
-document.addEventListener("turbo:before-fetch-response", (event) => {
-	if(document.getElementById('generateNote')) {
-		usedNoteKeys = []
-		setCount()
-		document.getElementById('generateNote').textContent = "Start"
-		document.getElementById('randomNote').textContent = ''
-	}
+document.addEventListener("turbo:frame-render", (event) => {
+	renderHome()
 })
