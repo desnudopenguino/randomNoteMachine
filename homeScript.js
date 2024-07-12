@@ -73,7 +73,10 @@ document.onkeyup = (e) => {
 }
 
 // set initial count
-document.addEventListener("DOMContentLoaded", (event) => {
-	setCount()
+document.addEventListener("turbo:load", (event) => {
 	document.getElementById('main').classList.remove('hidden')
+});
+
+document.addEventListener("turbo:render", (event) => {
+	setCount()
 });

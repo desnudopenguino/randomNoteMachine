@@ -4,12 +4,13 @@
 		<script type="module">
 			import * as Turbo from 'https://cdn.skypack.dev/@hotwired/turbo@7.1.0';
 		</script>
+		<script type="text/javascript" src="script.js"></script>
 		<title>Random Note Machine</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" href="styles.css" />
 	</head>
 	<body>
-		<div id="main">
+		<div id="main" class="hidden">
 			<div id="randomNote" class="fade"></div>
 			<div id="progress">
 				<span id="current"></span>/<span id="total"></span>
@@ -21,5 +22,4 @@
 			</div>
 		</div>
 	</body>
-	<script type="text/javascript" src="homeScript.js"></script>
 </html>
