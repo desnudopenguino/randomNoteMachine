@@ -59,13 +59,16 @@ div#main {
 	opacity: 0;
 }
 
+#nav {
+	display: flex;
+	flex-direction: row;
+	margin-bottom: 1rem;
+}
 #nav a {
-	display: inline-block;
-	padding: 1rem;
-	margin-top: 0.5rem;
+	flex: 1;
 	color: var(--federalBlue);
 }
 
 .about {
-  text-align: left;
+	text-align: left;
 }
