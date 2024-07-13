@@ -40,7 +40,7 @@ const showRandomUnusedNote = () => {
 		}
 		fadeText(newNote)
 	}
-	if(12 == usedNoteKeys.length) {
+	if(currentSetList.length == usedNoteKeys.length) {
 		document.getElementById('generateNote').textContent = "Done"
 	}
 	if(0 == usedNoteKeys.length) {
